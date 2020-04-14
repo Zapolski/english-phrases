@@ -2,6 +2,7 @@ package by.zapolski.englishphrases.service;
 
 import by.zapolski.englishphrases.domain.SentenceInfo;
 import by.zapolski.englishphrases.domain.WordWithFrequency;
+import by.zapolski.englishphrases.repository.WordWithFrequencyRepo;
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.TokenizerME;
@@ -19,8 +20,9 @@ public class SentenceCheckerServiceImpl implements SentenceCheckerService {
     private POSTaggerME tagger;
     @Autowired
     private DictionaryLemmatizer lemmatizer;
+
     @Autowired
-    private List<WordWithFrequency> wordList;
+    private WordWithFrequencyRepo wordWithFrequencyRepo;
 
     @Override
     public SentenceInfo getSentenceRank(String sentence) {
@@ -37,8 +39,8 @@ public class SentenceCheckerServiceImpl implements SentenceCheckerService {
         int index = 0;
         for (String lemma : sentenceInfo.getLemmas()) {
             if (!"O".equals(lemma)) {
-                Optional<WordWithFrequency> optional = wordList.stream().filter(w -> w.getValue().equals(lemma))
-                        .min(Comparator.comparingInt(WordWithFrequency::getRank));
+                List<WordWithFrequency> wordList = wordWithFrequencyRepo.findByValue(lemma);
+                Optional<WordWithFrequency> optional = wordList.stream().min(Comparator.comparingInt(WordWithFrequency::getRank));
                 int currentRank = optional.isPresent() ? optional.get().getRank() : 0;
                 ranks[index] = currentRank;
             }

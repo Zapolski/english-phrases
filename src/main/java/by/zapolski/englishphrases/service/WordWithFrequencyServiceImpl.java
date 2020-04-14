@@ -2,6 +2,7 @@ package by.zapolski.englishphrases.service;
 
 import by.zapolski.englishphrases.domain.WordWithFrequency;
 import by.zapolski.englishphrases.domain.dto.WordWithFrequencyDto;
+import by.zapolski.englishphrases.repository.WordWithFrequencyRepo;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,14 @@ import java.util.stream.Collectors;
 public class WordWithFrequencyServiceImpl implements WordWithFrequencyService {
 
     @Autowired
-    private List<WordWithFrequency> wordList;
+    private WordWithFrequencyRepo wordWithFrequencyRepo;
 
     @Override
     public List<WordWithFrequencyDto> getSimilarWordsWithAccuracyThreshold(String word, Integer threshold) {
         List<WordWithFrequencyDto> result = new ArrayList<>();
         JaroWinklerSimilarity jaroWinklerSimilarity = new JaroWinklerSimilarity();
 
+        List<WordWithFrequency> wordList = wordWithFrequencyRepo.findAll();
         for (WordWithFrequency wordWithFrequency : wordList) {
             Double currentThreshold = jaroWinklerSimilarity.apply(word, wordWithFrequency.getValue()) * 100;
 

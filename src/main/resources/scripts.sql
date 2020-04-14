@@ -13,5 +13,6 @@
 -- INSERT INTO word_with_frequency (id,part_of_speech,rank,value) VALUES (52972,'n',697,'colour');
 
 -- INSERT INTO word_with_frequency (id,part_of_speech,rank,value) VALUES (52973,'n',3825,'traveller');
+-- INSERT INTO word_with_frequency (id,part_of_speech,rank,value) VALUES (52974,'n',1428,'neighbour');
 
 --select * from word_with_frequency where id between 52962 and 52964;
