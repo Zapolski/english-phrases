@@ -37,7 +37,4 @@ public class NLPConfiguration {
         return new DictionaryLemmatizer(
                 dictLemmatizer);
     }
-
-
-
 }
