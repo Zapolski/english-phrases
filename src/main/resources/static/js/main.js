@@ -1,3 +1,5 @@
+// import 'material-design-icons-iconfont/src/material-design-icons.scss'
+
 import Vue from 'vue'
 import '@babel/polyfill'
 import 'api/resource'

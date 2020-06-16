@@ -11,7 +11,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(of={"id"})
 public class WordWithFrequency {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator( name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
     private Long id;
     private String value;
     private Integer rank;

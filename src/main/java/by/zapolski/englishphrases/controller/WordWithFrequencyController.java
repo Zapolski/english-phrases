@@ -1,5 +1,6 @@
 package by.zapolski.englishphrases.controller;
 
+import by.zapolski.englishphrases.domain.WordWithFrequency;
 import by.zapolski.englishphrases.domain.dto.WordWithFrequencyDto;
 import by.zapolski.englishphrases.service.WordWithFrequencyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class WordWithFrequencyController {
             @RequestParam Integer threshold
     ) {
         return wordWithFrequencyService.getSimilarWordsWithAccuracyThreshold(word, threshold);
+    }
+
+    @PostMapping
+    public WordWithFrequency create(@RequestBody WordWithFrequency wordWithFrequency) {
+        return wordWithFrequencyService.save(wordWithFrequency);
     }
 }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class MainTest {
 
     public void test() throws IOException {
-        List<String> list = Files.lines(Paths.get("D:/ideaProjects/english-phrases/src/main/resources/models/Frequency_60000.txt"))
+        List<String> list = Files.lines(Paths.get("D:/ideaProjects/english-phrases/src/main/resources/model/Frequency_60000.txt"))
                 .collect(Collectors.toList());
 
         int i = 0;

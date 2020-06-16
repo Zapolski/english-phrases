@@ -45,4 +45,9 @@ public class WordWithFrequencyServiceImpl implements WordWithFrequencyService {
                         .thenComparing(WordWithFrequencyDto::getRank)
         ).collect(Collectors.toList());
     }
+
+    @Override
+    public WordWithFrequency save(WordWithFrequency wordWithFrequency) {
+        return wordWithFrequencyRepo.save(wordWithFrequency);
+    }
 }
